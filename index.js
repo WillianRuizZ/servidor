@@ -9,14 +9,15 @@ const conectarDb = require("./config/db");
 conectarDb();
 
 const app = express();
+// Middleware PARA USAR JSON
+app.use(express.json());
 
 // Middleware para CORS
 app.use(cors());
 
-// Definir ruta principal
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use('/api/productos', require('./routes/producto'));
+
+
 
 // Definir el puerto
 const PORT = process.env.PORT || 4000; // Usar el puerto definido en las variables de entorno o 4000 por defecto
